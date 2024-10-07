@@ -1,0 +1,25 @@
+server:
+  port: 7070
+spring:
+  application:
+    name: sire-auth-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sire-auth
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  sql:
+    init:
+      mode: always
+  output:
+    ansi:
+      enabled: always
+eureka:
+  instance:
+    prefer-ip-address: true
+jwt:
+  secret: 5f7654317a372c237c67662359776f767a3e3b3e7971482f5878354e5d
+  expiration: 86400

@@ -1,0 +1,21 @@
+server:
+  port: 4440
+spring:
+  application:
+    name: sire-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/th3v3rb/sire-config-data
+          username: ${REPO_USERNAME}
+          password: ${REPO_KEY}
+          default-label: master
+          clone-on-start: true
+  security:
+    user:
+      name: ${SECURITY_USERNAME}
+      password: ${SECURITY_PASSWORD}
+  output:
+    ansi:
+      enabled: ALWAYS   
