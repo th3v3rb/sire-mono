@@ -48,7 +48,7 @@ public class AuthService {
 			return new AuthenticationResponse(null, "Email already taken");
 		}
 
-		User user = User.builder()
+		var user = User.builder()
 				.username(request.getUsername())
 				.password(passwordEnconder.encode(request.getPassword()))
 				.roles(List.of(this.roleService.getRoleByName("GUEST")))

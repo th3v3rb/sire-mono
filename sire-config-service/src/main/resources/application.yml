@@ -8,14 +8,14 @@ spring:
       server:
         git:
           uri: https://github.com/th3v3rb/sire-config-data
-          username: ${REPO_USERNAME}
-          password: ${REPO_KEY}
+          username: repo.username
+          password: repo.key
           default-label: master
           clone-on-start: true
   security:
     user:
-      name: ${SECURITY_USERNAME}
-      password: ${SECURITY_PASSWORD}
+      name: app.security.username
+      password: app.security.password
   output:
     ansi:
-      enabled: ALWAYS   
+      enabled: always
