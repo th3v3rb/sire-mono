@@ -1,0 +1,21 @@
+server:
+  port: 4440
+spring:
+  application:
+    name: sire-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GITHUB_REPO_URI}
+          username: th3v3rb
+          password: ${GITHUB_TOKEN}
+          default-label: master
+          clone-on-start: true
+  security:
+    user:
+      name: root
+      password: hugo2001
+  output:
+    ansi:
+      enabled: always
