@@ -37,7 +37,7 @@ public class AuthService {
      * @return the operation status
      */
     public RegistrationResponse register(CreateUserRequest request) {
-        if (!request.getPassword().equals(request.getPasswordConfirmation())) {
+        if (!request.passwordsMatch()) {
             log.warn("Passwords do not match");
             throw new RegisterException("Passwords do not match");
         }
@@ -47,14 +47,17 @@ public class AuthService {
             throw new RegisterException("Email already taken");
         }
 
-        final User user = User.builder()
+        final var user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEnconder.encode(request.getPassword()))
                 .roles(List.of(this.roleService.getRoleByName("GUEST")))
                 .isEnabled(true)
                 .email(request.getEmail()).build();
 
+        this.userRepo.save(user);
+
         final UserDto userDto = UserDto.builder()
+                .id(user.getId())
                 .name(user.getUsername())
                 .email(user.getEmail())
                 .roles(user.getRoles().stream().map(Role::getName).toArray(String[]::new))

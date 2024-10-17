@@ -2,16 +2,15 @@ package com.dantesoft.siregatewayservice.filter;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.server.ServerWebExchange;
 
 import com.dantesoft.siregatewayservice.dto.UserDto;
 import com.dantesoft.siregatewayservice.exception.InvalidAuthException;
-import org.springframework.web.server.ServerWebExchange;
 
 @Component
 public class AuthenticationFilter

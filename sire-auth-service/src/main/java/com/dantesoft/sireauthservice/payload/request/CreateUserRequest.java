@@ -19,4 +19,9 @@ public class CreateUserRequest {
 	public String password;
 	@NotBlank(message = "Password confirmation its required")
 	public String passwordConfirmation;
+
+
+	public boolean passwordsMatch() {
+		return password.equals(passwordConfirmation);
+	}
 }

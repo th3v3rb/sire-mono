@@ -29,19 +29,14 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(
-                        req -> req.requestMatchers(this.getPublicRoutes()).permitAll()
-                                .anyRequest().authenticated()).userDetailsService(userDetailsServiceImp)
+                .authorizeHttpRequests(req -> req.anyRequest().permitAll()) // not going to validate the routes here! :)
+                .userDetailsService(userDetailsServiceImp)
                 .exceptionHandling(
                         e -> e.accessDeniedHandler((request, response, accessDeniedException) -> response.setStatus(403))
                                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .logout(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .build();
-    }
-
-    private String[] getPublicRoutes() {
-        return new String[]{"api/v1/auth/**",};
     }
 
     @Bean
